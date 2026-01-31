@@ -27,6 +27,10 @@ class Play extends Phaser.Scene{
     keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
     keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
+    this.sound.play('bgmusic', {
+        loop: true,
+     })
+
 
     this.p1Score = 0 
     let scoreConfig = {
@@ -50,7 +54,8 @@ class Play extends Phaser.Scene{
     this.clock = this.time.delayedCall(game.settings.gameTimer, ()=> {
         this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5)
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu',scoreConfig).setOrigin(0.5),
-        this.gameOver = true
+        this.gameOver = true,
+        this.sound.stopAll()
     }, null, this)
     }
 
