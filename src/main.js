@@ -1,3 +1,8 @@
+//Name: Mandy Cai
+//
+
+
+
 let config = {
     type: Phaser.AUTO,
     width: 640,
