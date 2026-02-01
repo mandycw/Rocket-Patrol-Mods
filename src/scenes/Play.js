@@ -26,6 +26,13 @@ class Play extends Phaser.Scene{
     keyRESET = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R)
     keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
     keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
+    this.input.on('pointerdown', function(pointer){
+        if (!this.p1Rocket.isFiring) {
+            this.p1Rocket.isFiring = true
+            this.p1Rocket.sfxShot.play()
+        }
+       
+    }, this)
 
     this.sound.play('bgmusic', {
         loop: true,

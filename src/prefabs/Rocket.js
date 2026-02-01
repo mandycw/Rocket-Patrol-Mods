@@ -9,12 +9,10 @@ class Rocket extends Phaser.GameObjects.Sprite{
 
     update(){
         //left/right movement
-        if(!this.isFiring){
-            if(keyLEFT.isDown && this. x >= borderUISize + this.width){
-                this.x -= this.moveSpeed
-            } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width){
-                this.x += this.moveSpeed
-            }
+        if(!this.isFiring || this.isFiring){
+            let mouseFollow = this.scene.input.activePointer.x
+            mouseFollow = Phaser.Math.Clamp(mouseFollow, borderUISize + this.width, game.config.width - borderUISize - this.width)
+            this.x = mouseFollow
         }
 
         //fire
