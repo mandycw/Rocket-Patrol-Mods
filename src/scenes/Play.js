@@ -66,6 +66,9 @@ class Play extends Phaser.Scene{
         fixedWidth: 100
     }
 
+    this.hitBonus = 2000
+    this.loseBonus = 2000
+
     this.gameTimerText = this.add.text(borderUISize + borderPadding*16, borderUISize + borderPadding*2, '', displayTimer)
     this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig)
     scoreConfig.fixedWidth = 0
@@ -91,10 +94,13 @@ class Play extends Phaser.Scene{
         loop: true
     })
 
+    this.events.on('miss', () => {
+        this.remainingTime -= this.loseBonus;
+        if (this.remainingTime < 0) this.remainingTime = 0;
+    });
 
 
     }
-
 
     update(){
         this.gameTimerText.text = (this.remainingTime / 1000).toFixed(0)
@@ -154,6 +160,7 @@ class Play extends Phaser.Scene{
             boom.destroy()
         })
         this.p1Score += ship.points
+        this.remainingTime +=this.hitBonus
         this.scoreLeft.text = this.p1Score
         this.sound.play('sfx-explosion')    
     }

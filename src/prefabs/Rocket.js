@@ -30,6 +30,7 @@ class Rocket extends Phaser.GameObjects.Sprite{
         if(this.y <= borderUISize * 3 + borderPadding){
             this.isFiring = false
             this.y = game.config.height - borderUISize - borderPadding
+            this.scene.events.emit('miss');
         }
     }
 
